@@ -11,6 +11,9 @@ const UseEffect = () => {
         res.json().then((data) => setUser(data))
       );
     }
+    else{
+      setUser('');
+    }
   }, [count]);
 
   return (
@@ -18,15 +21,22 @@ const UseEffect = () => {
       <h1>Hello {name}</h1>
       <button
         type="button"
-        onClick={() => setName(user.name || "Missing Name")}
+        onClick={() => {
+          if (count > 0 && count <= 10){
+            setName(user.name)
+          }
+          else{
+            setName('Missing')
+          }}}
       >
+        
         Update Name
       </button>
-      <h3>{user.name || "Unknow"}</h3>
+      <h3>{user.name || 'Missing'}</h3>
       <div className="card">
         <h2>{count}</h2>
         <button type="button" onClick={() => setCount(count + 1)}>
-          เพิ่่ม
+          เพิ่ม
         </button>
         <button type="button" onClick={() => setCount(count - 1)}>
           ลด
